@@ -33,18 +33,24 @@ body{
 .img_section{
     width: 100%;
     display: flex;
-    height: auto;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
 }
 
 .leftimg{
     width: 50%;
     background-color: rgb(62, 213, 90);
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 
 .imgtext{
     background-color: transparent;
     font-weight: bolder;
     font-size: 18px;
+    display:contents;
     text-align: center;
     padding-top: 10px;
 }
@@ -60,6 +66,10 @@ body{
 .rightimg{
     width: 50%;
     background-color: rgb(164, 68, 34);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
 }
 
 .player,.computer{
@@ -106,5 +116,7 @@ img{
 }
 
 @media (max-width:900px) {
-    
+    .main_body{
+       min-width: 98%;
+    }
 }
