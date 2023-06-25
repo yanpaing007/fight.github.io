@@ -1,0 +1,146 @@
+<?php
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>FIGHT</title>
+</head>
+
+<body>
+
+    <div class="main_body">
+        <div class="main_head">
+            King Of fighter
+        </div>
+
+        <main>
+            <div class="img_section">
+                <div class="leftimg">
+                    <h6 id="myname" class="imgtext">Player</h6>
+                    <img class="player" src="player.jpg" alt="" srcset="">
+                    <p id="playerhptext" class="hp">HP : 100</p>
+                </div>
+                <div class="rightimg">
+                    <h6 class="imgtext">Computer</h6>
+                    <img class="computer" src="player.jpg" alt="" srcset="">
+                    <p id="bothptext" class="hp">HP : 100</p>
+                </div>
+
+
+            </div>
+            <div id="myDiv" class="text_section">
+                <p id="mytext" class="text_output"></p>
+            </div>
+            <div class="button_section">
+                <button onclick="myfunction()" id="mybtn" type="button" class="mybtn">INITIATE FIGHT</button>
+            </div>
+
+        </main>
+
+    </div>
+
+    <script>
+        var playerhp = 100;
+        var bothp = 100;
+        const mybtn = document.getElementById("mybtn");
+        var playerhptext = document.getElementById("playerhptext");
+        var bothptext = document.getElementById("bothptext");
+        var username=localStorage.getItem("username");
+
+        var myname=document.getElementById("myname");
+        myname.textContent=username;
+
+        
+
+        if(username === null || useranme === undefined){
+            var userInput=prompt("Enter your username : ");
+        localStorage.setItem("username",userInput);
+        var username=localStorage.getItem("username");
+        var myname=document.getElementById("myname");
+        myname.textContent=username;
+        }
+
+
+        function myfunction() {
+
+            function getRandomInteger(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            const randomInt = getRandomInteger(1, 30);
+            bothp = bothp - randomInt;
+            if (bothp > 0 && playerhp > 0) {
+                const div = document.getElementById("mytext");
+                div.textContent += "You attack the bot and deal " + randomInt + " damage. Bot HP : " + bothp + "\n";
+                bothptext.textContent = "HP : " + bothp;
+                botfun();
+            }
+            else if (bothp === 0 && playerhp === 0) {
+                div.textContent += "It is a draw" + "\n";
+            }
+            else {
+                const div = document.getElementById("mytext");
+                div.textContent += "You attack the bot and deal " + randomInt + " damage. Bot HP : 0" + "\n\n" + "Player WON!";
+                if (bothp > 0) {
+                    bothptext.textContent = "HP : " + bothp;
+                } else {
+                    bothptext.textContent = "HP : 0";
+                }
+                mybtn.addEventListener('click', function () {
+                    location.reload();
+
+                });
+                mybtn.textContent = "Game Over! click to restart";
+
+            }
+
+
+
+
+        }
+        function botfun() {
+
+            function getRandomInteger1(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            const randomInt1 = getRandomInteger1(4, 30);
+            playerhp = playerhp - randomInt1;
+            if (playerhp > 0 && bothp > 0) {
+                const div = document.getElementById("mytext");
+                div.textContent += "Bot attack the player and deal " + randomInt1 + " damage.Player HP :" + playerhp + "\n\n";
+                playerhptext.textContent = "HP : " + playerhp;
+            } else {
+                const div = document.getElementById("mytext");
+                div.textContent += "Bot attack the player and deal " + randomInt1 + " damage.Player HP :0" + "\n\n" + "Bot WON!";
+
+                if (playerhp > 0) {
+                    playerhptext.textContent = "HP : " + playerhp;
+                } else {
+                    playerhptext.textContent = "HP : 0";
+                }
+                mybtn.addEventListener('click', function () {
+                    location.reload();
+
+                });
+                mybtn.textContent = "Game Over! click to restart";
+
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>
